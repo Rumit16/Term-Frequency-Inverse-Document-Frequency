@@ -1,0 +1,30 @@
+Name: Rumit Gajera
+UNCC ID: 800890584
+
+Assignment - 2
+
+Step 1. Create a new input directory in Hadoop
+$ hadoop fs -mkdir input
+Step 2. Copy all the input files into the new input directory
+$ hadoop fs -put file* /input
+Step 3. Compile the source code using the below commands
+$ mkdir -p build
+
+Steps to run DocWorldCount.java
+$ javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/* DocWordCount.java -d build -Xlint
+$ jar -cvf wordcount.jar -C build/ .
+$ hadoop jar wordcount.jar DocWordCount input output1
+$ hadoop fs -cat output1/part-r-00000
+
+Steps to run DocWorldCount.java
+$ javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/* TermFrequency.java -d build -Xlint
+$ jar -cvf wordcount.jar -C build/ .
+$ hadoop jar wordcount.jar TermFrequency input output2
+$ hadoop fs -cat output2/part-r-00000
+
+Steps to run DocWorldCount.java
+$ javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/* TFIDF.java -d build -Xlint
+$ jar -cvf wordcount.jar -C build/ .
+$ hadoop jar wordcount.jar TFIDF input output3 output4
+$ hadoop fs -cat output3/part-r-00000
+$ hadoop fs -cat output4/part-r-00000
